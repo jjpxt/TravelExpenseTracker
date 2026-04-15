@@ -1,6 +1,6 @@
 **fullstack .NET 9 cross-platform mobile app using:**
-**.NET MAUI + XAML**
-**ASP.NET Core Web API**
+**.NET MAUI + XAML +**
+**ASP.NET Core Web API +**
 **EF Core + SQL Server**
 
 
