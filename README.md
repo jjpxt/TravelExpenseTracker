@@ -15,4 +15,3 @@ Profile Settings (Update Profile, Change Password)
 Manage Expense Categories
 
 A medida que as telas forem sendo desenvolvidas vou acrescentando elas ao Readme (se eu não esquecer...)
-:)
