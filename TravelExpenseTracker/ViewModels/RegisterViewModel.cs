@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace TravelExpenseTracker.ViewModels;
 
@@ -12,5 +13,9 @@ public partial class RegisterViewModel : ObservableObject
 
     [ObservableProperty]
     private string _password;
+
+    [RelayCommand]
+    private async Task NavigateBackAsync() =>
+    await Shell.Current.GoToAsync("..");
 
 }
