@@ -38,7 +38,7 @@
             <controls:NoUnderlineEntry  Placeholder="Password" IsPassword="True" BackgroundColor="LightSteelBlue"/>
             </Border>
 
-            <Button Text="Login" FontAttributes="Bold" />
+            <Button Text="Login" FontAttributes="Bold" Command="{Binding LoginCommand}" />
             
             <Label Text="Don't have an account? Register" HorizontalOptions="Center" TextColor="DarkBlue">
                 <Label.GestureRecognizers>
