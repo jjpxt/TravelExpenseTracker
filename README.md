@@ -5,7 +5,8 @@
 
 
 - Login & Registration
-- Main Dashboard (Recent Trips)
+- Main Dashboard (Recent Trips)<img width="1080" height="2400" alt="login" src="https://github.com/user-attachments/assets/e043d3d4-475b-49c3-b845-1cf21bf86b21" />
+
 - All Trips Page
 - Add New Trip
 - Trip Details + Expense List
@@ -18,7 +19,12 @@
 **A medida que as telas forem sendo desenvolvidas vou acrescentando elas ao Readme (se eu não esquecer...)**
 
 - Login Page
-<img width="388" height="841" alt="Captura de tela 2026-04-15 223427" src="https://github.com/user-attachments/assets/3974eaba-ea10-4c5c-be19-c5a0708c46c5" />
+<img width="1080" height="2400" alt="login" src="https://github.com/user-attachments/assets/1f2e9bc3-1238-424f-96f6-c426cd600054" />
+
 
 - Register Page
-<img width="392" height="837" alt="Captura de tela 2026-04-15 223438" src="https://github.com/user-attachments/assets/c4dc9d2c-ad47-4360-974f-a9e5eefac145" />
+<img width="1080" height="2400" alt="register" src="https://github.com/user-attachments/assets/6c014f6e-d161-47c2-8dfa-07ae8922a77a" />
+
+- Home Page
+<img width="1080" height="2400" alt="Home_page" src="https://github.com/user-attachments/assets/604f6478-b991-41e9-81a8-9993c661b065" />
+<img width="1080" height="2400" alt="Homepage" src="https://github.com/user-attachments/assets/a5b3e1c6-defa-4f53-ae4a-0a18b1450ebe" />
