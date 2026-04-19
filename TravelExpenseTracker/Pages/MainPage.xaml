@@ -3,33 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TravelExpenseTracker.Pages.MainPage"
              BackgroundColor="WhiteSmoke"
-             Title="Travel Expense Manager"
+             Shell.NavBarIsVisible="False"
              xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
              xmlns:model="clr-namespace:TravelExpenseTracker.Models"
              x:DataType="vm:HomeViewModel"
-             Shell.BackgroundColor="{StaticResource Primary}"
-             Shell.TitleColor="WhiteSmoke">
+             >
 
-    <Grid RowDefinitions="350, Auto,*" RowSpacing="10">
-        <Image Grid.Row="0" Source="travel1.png" VerticalOptions="Start" HeightRequest="350" Aspect="Fill"/>
-        
-        <Grid Grid.Row="0" Margin="0, 300, 0,0" ColumnDefinitions="Auto, *, Auto" Padding="15,0">
+    <Grid RowDefinitions="350, Auto, *" RowSpacing="10">
+        <!-- Imagem topo -->
+        <Image Grid.Row="0" Source="travel1.png" HeightRequest="350" Aspect="Fill"/>
+
+        <!-- Cabeçalho -->
+        <Grid Grid.Row="1" ColumnDefinitions="Auto, *, Auto" Padding="15,0">
             <Label Grid.Column="0" Text="Recent trips" FontSize="20"/>
-            <Button Grid.Column="2" Text="Add a trip" VerticalOptions="Start" Command="{Binding AddTripTempCommand}"/>
+            <Button Grid.Column="2" Text="Add a trip" Command="{Binding AddTripTempCommand}"/>
         </Grid>
 
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Trips}" Margin="15,0">
+        <!-- Lista rolável -->
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Trips}" Margin="15,0">
             <CollectionView.EmptyView>
                 <VerticalStackLayout HorizontalOptions="Center" Padding="25" Margin="0, 50, 0, 0">
                     <Label Text="No trips yet" FontSize="30"/>
-                    <Button Grid.Column="2" Text="Add a trip" VerticalOptions="Start" Margin="0, 15, 0, 0" Command="{Binding AddTripTempCommand}"/>
+                    <Button Text="Add a trip" Margin="0, 15, 0, 0" Command="{Binding AddTripTempCommand}"/>
                 </VerticalStackLayout>
             </CollectionView.EmptyView>
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Span="2" Orientation="Vertical" VerticalItemSpacing="15" HorizontalItemSpacing="15"/>
             </CollectionView.ItemsLayout>
-            
+
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:TripModel">
                     <Border StrokeShape="RoundRectangle 15" BackgroundColor="White" StrokeThickness="0">
@@ -42,7 +44,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        
     </Grid>
+
 
 </ContentPage>
