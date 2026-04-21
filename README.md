@@ -30,3 +30,12 @@
 <img width="1080" height="2400" alt="Homepage" src="https://github.com/user-attachments/assets/a5b3e1c6-defa-4f53-ae4a-0a18b1450ebe" style="width:300px;" />
 - 
 <img width="1080" height="2400" alt="Home_page" src="https://github.com/user-attachments/assets/604f6478-b991-41e9-81a8-9993c661b065" style="width:300px;" />
+
+- Trips Page
+
+<img width="1080" height="2400" alt="Empty_trips" src="https://github.com/user-attachments/assets/231e5039-9abd-448b-93b5-e2e55e465e79" style="width:300px;"/>
+
+-
+
+<img width="1080" height="2400" alt="Trips" src="https://github.com/user-attachments/assets/3bda5aad-dfae-49fb-a1a3-c2797f6c534f" style="width:300px;"/>
+
