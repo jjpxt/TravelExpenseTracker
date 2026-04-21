@@ -1,15 +1,15 @@
-﻿using Microsoft.Maui.Handlers;
+﻿
+using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using System.Runtime.CompilerServices;
 
 #if ANDROID
 using Android.Content.Res;
-
 #endif
 
 namespace TravelExpenseTracker.Controls;
 
-public class NoUnderlineEntry : Entry
+public class NoUnderlinepicker : Picker
 {
     protected override void OnHandlerChanged()
     {
@@ -21,7 +21,7 @@ public class NoUnderlineEntry : Entry
     {
         base.OnPropertyChanged(propertyName);
 
-        if(propertyName != nameof(BackgroundColor))
+        if (propertyName != nameof(BackgroundColor))
         {
             RemoveUnderline();
         }
@@ -30,16 +30,16 @@ public class NoUnderlineEntry : Entry
     private void RemoveUnderline()
     {
 #if ANDROID
-        if (Handler is IEntryHandler entryHandler)
+        if (Handler is PickerHandler pickerHandler)
         {
             if (BackgroundColor == null)
             {
-                entryHandler.PlatformView.BackgroundTintList =
+                pickerHandler.PlatformView.BackgroundTintList =
                     ColorStateList.ValueOf(Colors.Transparent.ToPlatform());
             }
             else
             {
-                entryHandler.PlatformView.BackgroundTintList =
+                pickerHandler.PlatformView.BackgroundTintList =
                     ColorStateList.ValueOf(BackgroundColor.ToPlatform());
             }
         }

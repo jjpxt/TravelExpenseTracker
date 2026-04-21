@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelExpenseTracker.Pages.SettingsPage"
+             Title="Settings"
+             xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
+             xmlns:model="clr-namespace:TravelExpenseTracker.Models"
+             x:DataType="vm:SettingsViewModel"
+             BackgroundColor="WhiteSmoke"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="menuLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            
+            <Style x:Key="menuIcon" TargetType="Image">
+                <Setter Property="WidthRequest" Value="22"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="Auto, *, Auto" Padding="15" RowSpacing="25" >
+        <VerticalStackLayout Grid.Row="0" >
+            
+            <Border Background="{StaticResource Primary}" 
+                         HeightRequest="100" 
+                         WidthRequest="100" 
+                         StrokeThickness="5" 
+                         StrokeShape="RoundRectangle 50">
+                
+                <Label HorizontalOptions="Center" 
+                           FontAttributes="Bold"
+                           TextColor="AliceBlue"
+                           VerticalOptions="Center" 
+                           Text="{Binding Initial}" 
+                           FontSize="40"/>
+                
+            </Border>
+            <Label Text="{Binding Name}" 
+                       HorizontalOptions="Center" 
+                       FontSize="24"/>
+            
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1" StrokeShape="RoundRectangle 15" BackgroundColor="LightGray" Padding="15" StrokeThickness="0" VerticalOptions="Start">
+            <VerticalStackLayout VerticalOptions="Start" BackgroundColor="LightGray" Spacing="15">
+
+                <Grid ColumnDefinitions="20,*,20" RowDefinitions="Auto, 1" >
+                    <Image Grid.Column="0" Source="userr.svg" Style="{StaticResource menuIcon}" />
+                    <Label Grid.Column="1" Text="Edit Name" Style="{StaticResource menuLabel}"/>
+                    <Image Grid.Column="2" Source="edit.svg" Style="{StaticResource menuIcon}"/>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="0.5" Color="Gray" />
+                </Grid>
+
+                <Grid ColumnDefinitions="20,*,20" RowDefinitions="Auto, 1" >
+                    <Image Grid.Column="0" Source="userr.svg" Style="{StaticResource menuIcon}" />
+                    <Label Grid.Column="1" Text="Change Password" Style="{StaticResource menuLabel}"/>
+                    <Image Grid.Column="2" Source="edit.svg" Style="{StaticResource menuIcon}"/>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="0.5" Color="Gray" />
+                </Grid>
+
+                <Grid ColumnDefinitions="20,*,20" RowDefinitions="Auto, 1" >
+                    <Image Grid.Column="0" Source="userr.svg" Style="{StaticResource menuIcon}" />
+                    <Label Grid.Column="1" Text="Manage Expense Categories" Style="{StaticResource menuLabel}"/>
+                    <Image Grid.Column="2" Source="edit.svg" Style="{StaticResource menuIcon}"/>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="0.5" Color="Gray" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </Border>
+        
+        <Button Grid.Row="2" 
+                     Text="Logout" 
+                     HorizontalOptions="Center" 
+                     BackgroundColor="red" 
+                     FontSize="18"/>
+        
+    </Grid>
+</ContentPage>

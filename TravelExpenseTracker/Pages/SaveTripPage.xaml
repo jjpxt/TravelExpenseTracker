@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelExpenseTracker.Pages.SaveTripPage"
+             xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
+             xmlns:model="clr-namespace:TravelExpenseTracker.Models"
+             x:DataType="vm:SaveTripViewModel"
+             BackgroundColor="WhiteSmoke"
+             Shell.NavBarIsVisible="False"
+             xmlns:controls="clr-namespace:TravelExpenseTracker.Controls"
+             Title="Add a Trip">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="20">
+            <VerticalStackLayout>
+                <CollectionView ItemsSource="{Binding Categories}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="10" VerticalItemSpacing="12"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:CategoryModel">
+                            <Border StrokeShape="RoundRectangle 4" Padding="5" BackgroundColor="White" StrokeThickness="0">
+                                <VerticalStackLayout Spacing="5">
+                                    <Image Source="{Binding Image}" HeightRequest="80"/>
+                                    <Label Text="{Binding Name}" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </VerticalStackLayout>
+                
+            <VerticalStackLayout>
+                    <Label Text="Trip Name"/>
+                    <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
+                        <controls:NoUnderlineEntry  Placeholder="Trip title" BackgroundColor="White"/>
+                    </Border>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout>
+                    <Label Text="Trip Location (City/State/Country)"/>
+                    <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
+                    <controls:NoUnderlineEntry  Placeholder="Trip Location" BackgroundColor="White"/>
+                    </Border>
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Start Date"/>
+                    <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
+                        <controls:NoUnderlineDatepicker BackgroundColor="White"/>
+                    </Border>
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="End Date"/>
+                    <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
+                        <controls:NoUnderlineDatepicker BackgroundColor="White"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout>
+                <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
+                    <controls:NoUnderlinepicker ItemsSource="{Binding Statuses}" BackgroundColor="White" Title="Select Trip Status"/>
+                </Border>
+            </VerticalStackLayout>
+
+            <Button Text="Save Trip"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

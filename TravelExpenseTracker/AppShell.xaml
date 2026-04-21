@@ -38,14 +38,14 @@
         <ShellContent
             Title="Add a Trip"
             Icon="trip.svg"
-            ContentTemplate="{DataTemplate pages:MainPage}"
-            Route="MainPage2" />
+            ContentTemplate="{DataTemplate pages:SaveTripPage}"
+            Route="SaveTripPage" />
         
         <ShellContent
             Title="Settings"
             Icon="cog.svg"
-            ContentTemplate="{DataTemplate pages:MainPage}"
-            Route="MainPage3" />
+            ContentTemplate="{DataTemplate pages:SettingsPage}"
+            Route="SettingsPage" />
         
     </TabBar>
 

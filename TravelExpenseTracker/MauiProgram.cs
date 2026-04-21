@@ -24,8 +24,12 @@ namespace TravelExpenseTracker
 #endif
             builder.Services.AddTransient<LoginViewModel>().AddTransient<LoginPage>();
             builder.Services.AddTransient<RegisterViewModel>().AddTransient<RegisterPage>();
-            builder.Services.AddSingleton<HomeViewModel>().AddTransient<MainPage>();
-            builder.Services.AddSingleton<TripsViewModel>().AddTransient<TripsPage>();
+
+            builder.Services.AddSingleton<HomeViewModel>().AddSingleton<MainPage>();
+
+            builder.Services.AddTransient<TripsViewModel>().AddTransient<TripsPage>();
+            builder.Services.AddTransient<SettingsViewModel>().AddTransient<SettingsPage>();
+            builder.Services.AddTransient<SaveTripViewModel>().AddTransient<SaveTripPage>();
 
             return builder.Build();
         }
