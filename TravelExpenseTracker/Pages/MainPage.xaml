@@ -40,6 +40,9 @@
                             <Label Text="{Binding Title}" FontSize="18" Padding="10,0"/>
                             <Label Text="{Binding Location}" Padding="10,0"/>
                         </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=GoToTripDetailsPageCommand}" CommandParameter="{Binding Id}"/>
+                        </Border.GestureRecognizers>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

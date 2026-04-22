@@ -9,6 +9,8 @@ namespace TravelExpenseTracker
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+            Routing.RegisterRoute(nameof(ExpensesCategoriesPage), typeof(ExpensesCategoriesPage));
+            Routing.RegisterRoute(nameof(TripDetailsPage), typeof(TripDetailsPage));
         }
     }
 }

@@ -69,6 +69,9 @@
                     <Label Grid.Column="1" Text="Manage Expense Categories" Style="{StaticResource menuLabel}"/>
                     <Image Grid.Column="2" Source="edit.svg" Style="{StaticResource menuIcon}"/>
                     <BoxView Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="0.5" Color="Gray" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToExpenseCategoriesCommand}"/>
+                    </Grid.GestureRecognizers>
                 </Grid>
 
             </VerticalStackLayout>

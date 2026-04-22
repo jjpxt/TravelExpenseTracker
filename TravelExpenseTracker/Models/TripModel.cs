@@ -1,4 +1,5 @@
 ﻿namespace TravelExpenseTracker.Models;
 
-public record TripModel(string Image, string Title, string Location);
+public record TripModel(int Id, string Image, string Title, string Location);
+
 

@@ -1,0 +1,6 @@
+﻿namespace TravelExpenseTracker.Models;
+
+public record TripDetailModel(string Image, string Title, string Location, string CategoryName,
+    string Status, DateTime StartDate, DateTime EndDate);
+
+
