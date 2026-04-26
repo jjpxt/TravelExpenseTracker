@@ -32,6 +32,7 @@ namespace TravelExpenseTracker
             builder.Services.AddTransient<SaveTripViewModel>().AddTransient<SaveTripPage>();
             builder.Services.AddTransient<ExpensesCategoriesViewModel>().AddTransient<ExpensesCategoriesPage>();
             builder.Services.AddTransient<TripDetailsViewModel>().AddTransient<TripDetailsPage>();
+            builder.Services.AddTransient<SaveExpenseViewModel>().AddTransient<SaveExpensePage>();
 
             return builder.Build();
         }

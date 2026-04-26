@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelExpenseTracker.Pages.SaveExpensePage"
+             Shell.PresentationMode="ModalAnimated"
+             BackgroundColor="WhiteSmoke"
+             Shell.NavBarIsVisible="False"
+             xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
+             xmlns:model="clr-namespace:TravelExpenseTracker.Models"
+             xmlns:controls="clr-namespace:TravelExpenseTracker.Controls"
+             x:DataType="vm:SaveExpenseViewModel">
+
+    <Grid RowDefinitions="Auto, *" Padding="10" RowSpacing="25">
+        <Grid ColumnDefinitions="Auto,*" Padding="10">
+        <ImageButton 
+        Source="tag.svg" 
+        MinimumHeightRequest="20"
+        HorizontalOptions="Start"
+        Grid.Column="0"
+            Command="{Binding GoBackCommand}"/>
+
+        <Label 
+        Text="Save Expense" 
+        FontSize="20"
+        HorizontalOptions="End"
+        VerticalOptions="Center"
+        Grid.Column="1"
+        FontAttributes="Bold"/>
+        </Grid>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <VerticalStackLayout>
+                <Label Text="For What?" FontSize="18" Margin="5,0"/>
+                    <Border BackgroundColor="White" StrokeShape="RoundRectangle 20">
+                    <controls:NoUnderlineEntry Margin="10,1" Placeholder="Expense Title" BackgroundColor="White"/>
+                    </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="How Much?" FontSize="18" Margin="5,0"/>
+                    <Border BackgroundColor="White" StrokeShape="RoundRectangle 20">
+                    <controls:NoUnderlineEntry Placeholder="Expense Amount" BackgroundColor="White" Margin="10,1"/>
+                    </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="When?" FontSize="18" Margin="5,0"/>
+                    <Border BackgroundColor="White" StrokeShape="RoundRectangle 20">
+                    <controls:NoUnderlineDatepicker BackgroundColor="White" Margin="10,1"/>
+                    </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Category" FontSize="18" Margin="5,0"/>
+                <Border BackgroundColor="White" StrokeShape="RoundRectangle 20">
+                    <controls:NoUnderlinepicker Title="Expense category" BackgroundColor="White" Margin="10,1"/>
+                </Border>
+            </VerticalStackLayout>
+            
+            <Button Text="Save Expense" FontSize="20" WidthRequest="250" Margin="20"/>
+            
+        </VerticalStackLayout>
+    </Grid>
+
+
+</ContentPage>
