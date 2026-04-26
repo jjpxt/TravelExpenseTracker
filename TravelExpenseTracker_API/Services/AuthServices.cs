@@ -74,6 +74,7 @@ public class AuthServices
         var key = _configuration.GetValue<string>("Jwt:SecureKey");
         var keyBiteArray = Encoding.UTF8.GetBytes(key);
         var securityKey = new SymmetricSecurityKey(keyBiteArray);
+
         var signinCreds = new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256);
 
         var jwtSecurityToken = new JwtSecurityToken(
