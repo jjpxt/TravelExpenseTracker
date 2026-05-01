@@ -18,34 +18,37 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="Auto, Auto, Auto,*" RowSpacing="15">
-        
-        <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0, 10, 0 ,0">
-            <Image Source="travelbag.png" HeightRequest="280"/>
-            <Label Style="{StaticResource appName}" Text="Travel Expense Tracker"/>
-            
-        </VerticalStackLayout>
+    <Grid>
+        <Grid RowDefinitions="Auto, Auto, Auto,*" RowSpacing="15">
 
-        <Label Grid.Row="1" Text="Welcome Back!" FontSize="22" HorizontalOptions="Center"/>
+            <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0, 10, 0 ,0">
+                <Image Source="travelbag.png" HeightRequest="280"/>
+                <Label Style="{StaticResource appName}" Text="Travel Expense Tracker"/>
 
-        <VerticalStackLayout Grid.Row="2" Spacing="25" Padding="25">
+            </VerticalStackLayout>
 
-            <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
-                <controls:NoUnderlineEntry  Placeholder="Email" BackgroundColor="LightSteelBlue"/>
-            </Border>
+            <Label Grid.Row="1" Text="Welcome Back!" FontSize="22" HorizontalOptions="Center"/>
 
-            <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
-            <controls:NoUnderlineEntry  Placeholder="Password" IsPassword="True" BackgroundColor="LightSteelBlue"/>
-            </Border>
+            <VerticalStackLayout Grid.Row="2" Spacing="25" Padding="25">
 
-            <Button Text="Login" FontAttributes="Bold" Command="{Binding LoginCommand}" />
-            
-            <Label Text="Don't have an account? Register" HorizontalOptions="Center" TextColor="DarkBlue">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}"/>
-                </Label.GestureRecognizers>
-            </Label>
+                <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
+                    <controls:NoUnderlineEntry Text="{Binding Email}" Placeholder="Email" BackgroundColor="LightSteelBlue"/>
+                </Border>
 
-        </VerticalStackLayout>
+                <Border StrokeShape="RoundRectangle 22" StrokeThickness="0">
+                    <controls:NoUnderlineEntry Text="{Binding Password}" Placeholder="Password" IsPassword="True" BackgroundColor="LightSteelBlue"/>
+                </Border>
+
+                <Button Text="Login" FontAttributes="Bold" Command="{Binding LoginCommand}" />
+
+                <Label Text="Don't have an account? Register" HorizontalOptions="Center" TextColor="DarkBlue">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </VerticalStackLayout>
+        </Grid>
+        <ActivityIndicator HorizontalOptions="Center" IsRunning="{Binding IsBusy}" VerticalOptions="Center"/>
     </Grid>
 </ContentPage>

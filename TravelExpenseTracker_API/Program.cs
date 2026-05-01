@@ -43,6 +43,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<AuthServices>().AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<ProfileService>()
+                         .AddScoped<TripExpenseService>()
+                         .AddScoped<TripsService>();
 
 var app = builder.Build();
 
