@@ -6,6 +6,7 @@
              BackgroundColor="WhiteSmoke"
              Shell.NavBarIsVisible="False"
              xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
+             xmlns:dto="clr-namespace:TravelExpenseTracker.Shared.Dtos;assembly=TravelExpenseTracker.Shared"
              xmlns:model="clr-namespace:TravelExpenseTracker.Models"
              xmlns:controls="clr-namespace:TravelExpenseTracker.Controls"
              x:DataType="vm:SaveExpenseViewModel">
@@ -32,29 +33,29 @@
             <VerticalStackLayout>
                 <Label Text="For What?" FontSize="18" Margin="5,0"/>
                     <Border BackgroundColor="White" StrokeShape="RoundRectangle 20">
-                    <controls:NoUnderlineEntry Margin="10,1" Placeholder="Expense Title" BackgroundColor="White"/>
+                    <controls:NoUnderlineEntry Text="{Binding Model.Title}" Margin="10,1" Placeholder="Expense Title" BackgroundColor="White"/>
                     </Border>
             </VerticalStackLayout>
             <VerticalStackLayout>
                 <Label Text="How Much?" FontSize="18" Margin="5,0"/>
                     <Border BackgroundColor="White" StrokeShape="RoundRectangle 20">
-                    <controls:NoUnderlineEntry Placeholder="Expense Amount" BackgroundColor="White" Margin="10,1"/>
+                    <controls:NoUnderlineEntry Text="{Binding Model.Amount}" Keyboard="Numeric" Placeholder="Expense Amount" BackgroundColor="White" Margin="10,1"/>
                     </Border>
             </VerticalStackLayout>
             <VerticalStackLayout>
                 <Label Text="When?" FontSize="18" Margin="5,0"/>
                     <Border BackgroundColor="White" StrokeShape="RoundRectangle 20">
-                    <controls:NoUnderlineDatepicker BackgroundColor="White" Margin="10,1"/>
+                    <controls:NoUnderlineDatepicker Date="{Binding Model.SpentOn}" BackgroundColor="White" Margin="10,1"/>
                     </Border>
             </VerticalStackLayout>
             <VerticalStackLayout>
                 <Label Text="Category" FontSize="18" Margin="5,0"/>
                 <Border BackgroundColor="White" StrokeShape="RoundRectangle 20">
-                    <controls:NoUnderlinepicker Title="Expense category" BackgroundColor="White" Margin="10,1"/>
+                    <controls:NoUnderlinepicker ItemsSource="{Binding CategoryNames}" SelectedItem="{Binding Model.SelectedCategoryName}" Title="Expense category" BackgroundColor="White" Margin="10,1"/>
                 </Border>
             </VerticalStackLayout>
             
-            <Button Text="Save Expense" FontSize="20" WidthRequest="250" Margin="20"/>
+            <Button Text="Save Expense" FontSize="20" WidthRequest="250" Margin="20" Command="{Binding SaveExpenseCommand}"/>
             
         </VerticalStackLayout>
     </Grid>

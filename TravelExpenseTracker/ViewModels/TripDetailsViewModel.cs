@@ -1,31 +1,73 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using TravelExpenseTracker.Apis;
 using TravelExpenseTracker.Models;
 using TravelExpenseTracker.Pages;
+using TravelExpenseTracker.Shared.Dtos;
 
 namespace TravelExpenseTracker.ViewModels;
 
-public partial class TripDetailsViewModel : ObservableObject
+[QueryProperty(nameof(TripId), nameof(TripId))]
+[QueryProperty(nameof(ExpenseSaved), nameof(ExpenseSaved))]
+public partial class TripDetailsViewModel : BaseViewModel
 {
-    public TripDetailModel TripInfo { get; set; } = new TripDetailModel(
-        "category_beach.png", "A Beach trip", "Some place", "beach", "Planned",
-        DateTime.Now.AddDays(10), DateTime.Now.AddDays(20));
-
-    public ObservableCollection<ExpenseModel> Expenses { get; set; } = [];
+    private readonly ITripsApi _tripsApi;
+    private readonly IExpenseApi _expenseApi;
+    public TripDetailsViewModel(ITripsApi tripsApi, IExpenseApi expenseApi)
+    {
+        _tripsApi = tripsApi;
+        _expenseApi = expenseApi;
+    }
 
     [ObservableProperty]
-    private decimal _totalExpenses;
+    private TripListDto _tripInfo = TripListDto.Empty();
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(TotalExpenses))]
+    private ExpenseListDto[] _expenses = [];
+
+    [ObservableProperty]
+    private int _tripId;
+
+    async partial void OnTripIdChanged(int value)
+    {
+        await MakeApiCall(async () =>
+        {
+            var result = await _tripsApi.GetTripDetails(TripId);
+            if (!result.IsSuccess)
+            {
+                await ErrorAlertAsync(result.Error);
+                return;
+            }
+
+            (TripInfo, Expenses) = result.Data;
+        });
+    }
+
+    public decimal TotalExpenses => Expenses.Sum(e => e.Amount);
 
     [RelayCommand]
-    private async Task AddExpenseTempAsync()
+    private async Task AddExpenseAsync()
     {
-        Expenses.Add(new ExpenseModel(1, "Flight tickets", "Tickets", 1500, DateTime.Today));
-        Expenses.Add(new ExpenseModel(2, "Clothes, Shoes and cosmetic", "Shopping", 100, DateTime.Today));
-        Expenses.Add(new ExpenseModel(3, "Breakfast", "Food", 500, DateTime.Now.AddDays(2)));
+        var parameter = new Dictionary<string, object>
+        {
+            [nameof(SaveExpenseViewModel.TripId)] = TripId
+        };
+        await Shell.Current.GoToAsync(nameof(SaveExpensePage), parameter);
+    }
 
-        TotalExpenses = Expenses.Sum(e => e.Amount);
+    [ObservableProperty]
+    private bool _expenseSaved;
 
-        await Shell.Current.GoToAsync(nameof(SaveExpensePage));
+    async partial void OnExpenseSavedChanging(bool newValue)
+    {
+        if (newValue)
+        {
+            await MakeApiCall(async () =>
+             {
+                   Expenses = await _expenseApi.GetTripExpenses(TripId);
+                   ExpenseSaved = false;
+              });
+        }
     }
 }

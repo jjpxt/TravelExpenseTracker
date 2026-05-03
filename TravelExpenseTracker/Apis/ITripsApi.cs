@@ -16,5 +16,5 @@ public interface ITripsApi
     Task<TripListDto[]> GetUserTrips(int count = 100);
 
     [Get("/api/trips/{tripId}")]
-    Task<ApiResult<TripDetailsDto>> GetTripDetails(int tripId);
+    Task<ApiResult<TripDetailsDto>> GetTripDetails(int tripId, bool includeExpenses = true);
 }

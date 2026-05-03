@@ -4,6 +4,7 @@
              x:Class="TravelExpenseTracker.Pages.ExpensesCategoriesPage"
              BackgroundColor="WhiteSmoke"
              xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
+             xmlns:dto="clr-namespace:TravelExpenseTracker.Shared.Dtos;assembly=TravelExpenseTracker.Shared"
              xmlns:model="clr-namespace:TravelExpenseTracker.Models"
              x:DataType="vm:ExpensesCategoriesViewModel"
              Shell.NavBarIsVisible="True"
@@ -21,7 +22,7 @@
         </CollectionView.ItemsLayout>
         
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:ExpenseCategoryModel">
+            <DataTemplate x:DataType="dto:ExpenseCategoryDto">
                 <Border StrokeShape="RoundRectangle 4" BackgroundColor="White" StrokeThickness="0" Padding="10">
                     <Label Text="{Binding Name}" FontSize="18"/>
                 </Border>

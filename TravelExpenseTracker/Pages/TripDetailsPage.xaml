@@ -5,6 +5,7 @@
              BackgroundColor="WhiteSmoke"
              xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
              xmlns:model="clr-namespace:TravelExpenseTracker.Models"
+             xmlns:dto="clr-namespace:TravelExpenseTracker.Shared.Dtos;assembly=TravelExpenseTracker.Shared"
              x:DataType="vm:TripDetailsViewModel"
              Title="{Binding TripInfo.Title}">
 
@@ -20,7 +21,7 @@
                 <VerticalStackLayout Spacing="10">
                     <Grid ColumnDefinitions="*, Auto">
                         <Label Grid.Column="0" Text="{Binding TripInfo.Title}" FontSize="20"/>
-                        <Border BackgroundColor="Green"
+                        <Border BackgroundColor="{Binding TripInfo.Status, Converter={StaticResource tripStatusToColor}}"
                                 StrokeShape="RoundRectangle 10"
                                 Padding="4,2"
                                 VerticalOptions="Center"
@@ -57,7 +58,7 @@
             <VerticalStackLayout Grid.Row="2" Padding="15">
                 <Grid ColumnDefinitions="*, Auto">
                     <Label Grid.Column="0" Text="Expenses" FontSize="20"/>
-                    <Button Grid.Column="1" Text="Add Expense" Command="{Binding AddExpenseTempCommand}"/>
+                    <Button Grid.Column="1" Text="Add Expense" Command="{Binding AddExpenseCommand}"/>
                 </Grid>
 
                 <CollectionView ItemsSource="{Binding Expenses}">
@@ -74,7 +75,7 @@
                         </ContentView>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:ExpenseModel">
+                        <DataTemplate x:DataType="dto:ExpenseListDto">
                             <Border BackgroundColor="White" 
                                     Stroke="LightGray" 
                                     StrokeThickness="1" 

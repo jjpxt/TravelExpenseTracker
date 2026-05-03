@@ -12,10 +12,10 @@ public interface IExpenseApi
     [Post("/api/trips/expenses/categories")]
     Task<ApiResult> SaveExpenseCategory(ExpenseCategoryDto dto);
 
-    [Post("/api/trips/expenses/categories/of-trip/{tripId}/save")]
+    [Post("/api/trips/expenses/of-trip/{tripId}/save")]
     Task<ApiResult> SaveTripExpense(int tripId, ExpenseDto dto);
 
-    [Get("/api/trips/expenses/categories/of-trip/{tripId}")]
+    [Get("/api/trips/expenses/of-trip/{tripId}")]
     Task<ExpenseListDto[]> GetTripExpenses(int tripId);
 
 }

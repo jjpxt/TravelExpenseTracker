@@ -55,6 +55,11 @@
                     <Label Grid.Column="1" Text="Edit Name" Style="{StaticResource menuLabel}"/>
                     <Image Grid.Column="2" Source="edit.svg" Style="{StaticResource menuIcon}"/>
                     <BoxView Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="0.5" Color="Gray" />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UpdateNameCommand}"/>
+                    </Grid.GestureRecognizers>
+                    
                 </Grid>
 
                 <Grid ColumnDefinitions="20,*,20" RowDefinitions="Auto, 1" >
@@ -62,6 +67,11 @@
                     <Label Grid.Column="1" Text="Change Password" Style="{StaticResource menuLabel}"/>
                     <Image Grid.Column="2" Source="edit.svg" Style="{StaticResource menuIcon}"/>
                     <BoxView Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="0.5" Color="Gray" />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangePasswordCommand}"/>
+                    </Grid.GestureRecognizers>
+
                 </Grid>
 
                 <Grid ColumnDefinitions="20,*,20" RowDefinitions="Auto, 1" >
@@ -81,7 +91,9 @@
                      Text="Logout" 
                      HorizontalOptions="Center" 
                      BackgroundColor="red" 
-                     FontSize="18"/>
+                     FontSize="18"
+                     Command="{Binding LogoutCommand}"
+                />
         
     </Grid>
 </ContentPage>

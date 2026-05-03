@@ -5,6 +5,7 @@
              Title="Trips"
              xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
              xmlns:model="clr-namespace:TravelExpenseTracker.Models"
+             xmlns:dto="clr-namespace:TravelExpenseTracker.Shared.Dtos;assembly=TravelExpenseTracker.Shared"
              x:DataType="vm:TripsViewModel"
              BackgroundColor="WhiteSmoke"
              Shell.BackgroundColor="WhiteSmoke"
@@ -12,97 +13,100 @@
 
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="plus.svg" Command="{Binding AddTripTempCommand}"/>
+        <ToolbarItem IconImageSource="plus.svg" Command="{Binding AddTripCommand}"/>
     </ContentPage.ToolbarItems>
 
-    <CollectionView ItemsSource="{Binding Trips}"
-                    Margin="15,10">
-        <CollectionView.EmptyView>
-            <VerticalStackLayout HorizontalOptions="Center" Padding="25" Margin="0, 250, 0, 0">
-                <Label Text="No trips yet" FontSize="30"/>
-                <Button Text="Add a trip"
-                        FontSize="18"
-                        Margin="0, 10, 0, 0"
-                        Command="{Binding AddTripTempCommand}"/>
-            </VerticalStackLayout>
-        </CollectionView.EmptyView>
+    <Grid>
+        <CollectionView ItemsSource="{Binding Trips}"
+                 Margin="15,10">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center" Padding="25" Margin="0, 250, 0, 0">
+                    <Label Text="No trips yet" FontSize="30"/>
+                    <Button Text="Add a trip"
+                     FontSize="18"
+                     Margin="0, 10, 0, 0"
+                     Command="{Binding AddTripCommand}"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
 
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout ItemSpacing="2" Orientation="Vertical"/>
-        </CollectionView.ItemsLayout>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="2" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:TripModel">
-                <Border BackgroundColor="White"
-                        StrokeShape="RoundRectangle 10"
-                        Padding="6"
-                        Margin="2"
-                        StrokeThickness="1"
-                        Stroke="LightGray">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="dto:TripListDto">
+                    <Border BackgroundColor="White"
+                     StrokeShape="RoundRectangle 10"
+                     Padding="6"
+                     Margin="2"
+                     StrokeThickness="1"
+                     Stroke="LightGray">
 
-                    <Grid ColumnDefinitions="120,Auto,*"
-                          ColumnSpacing="10">
+                        <Grid ColumnDefinitions="120,Auto,*"
+                       ColumnSpacing="10">
 
-                        <!-- Imagem da viagem -->
-                        <Image Grid.Column="0"
-                               Source="{Binding Image}" 
-                               WidthRequest="150" HeightRequest="120" Aspect="Fill"/>
+                            <!-- Imagem da viagem -->
+                            <Image Grid.Column="0"
+                            Source="{Binding Image}" 
+                            WidthRequest="150" HeightRequest="120" Aspect="Fill"/>
 
-                        <!-- Linha separadora -->
-                        <BoxView Grid.Column="1"
-                                 WidthRequest="1"
-                                 HeightRequest="100"
-                                 BackgroundColor="AliceBlue"
-                                 HorizontalOptions="Center"
-                                 VerticalOptions="Center"/>
+                            <!-- Linha separadora -->
+                            <BoxView Grid.Column="1"
+                              WidthRequest="1"
+                              HeightRequest="100"
+                              BackgroundColor="AliceBlue"
+                              HorizontalOptions="Center"
+                              VerticalOptions="Center"/>
 
-                        <!-- Informações da viagem -->
-                        <VerticalStackLayout Grid.Column="2"
-                                             Spacing="6" Padding="10"
-                                             VerticalOptions="Center">
+                            <!-- Informações da viagem -->
+                            <VerticalStackLayout Grid.Column="2"
+                                          Spacing="6" Padding="10"
+                                          VerticalOptions="Center">
 
-                            <!-- Linha com título e selo alinhados -->
-                            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
-                                <Label Text="{Binding Title}" 
-                                       FontSize="18" 
-                                       FontAttributes="Bold" 
-                                       VerticalOptions="Center"
-                                       Grid.Column="0"/>
+                                <!-- Linha com título e selo alinhados -->
+                                <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                                    <Label Text="{Binding Title}" 
+                                    FontSize="18" 
+                                    FontAttributes="Bold" 
+                                    VerticalOptions="Center"
+                                    Grid.Column="0"/>
 
-                                <Border BackgroundColor="Green"
-                                        StrokeShape="RoundRectangle 10"
-                                        Padding="4,2"
-                                        VerticalOptions="Center"
-                                        Margin="0,0,10,0"
-                                        Grid.Column="1">
-                                    <Label Text="Planned"
-                                           TextColor="White"
-                                           FontSize="12"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"/>
-                                </Border>
-                            </Grid>
+                                    <Border BackgroundColor="{Binding Status, Converter={StaticResource tripStatusToColor}}"
+                                     StrokeShape="RoundRectangle 10"
+                                     Padding="4,2"
+                                     VerticalOptions="Center"
+                                     Margin="0,0,10,0"
+                                     Grid.Column="1">
+                                        <Label Text="{Binding Status}"
+                                        TextColor="White"
+                                        FontSize="12"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"/>
+                                    </Border>
+                                </Grid>
 
-                            <!-- Localização -->
-                            <HorizontalStackLayout Spacing="5" >
-                                <Image HeightRequest="20" Source="locationplus.svg"/>
-                                <Label Text="{Binding Location}" FontSize="18" TextColor="Gray"/>
-                                
-                            </HorizontalStackLayout>
+                                <!-- Localização -->
+                                <HorizontalStackLayout Spacing="5" >
+                                    <Image HeightRequest="20" Source="locationplus.svg"/>
+                                    <Label Text="{Binding Location}" FontSize="18" TextColor="Gray"/>
 
-                            <!-- Datas -->
-                            <HorizontalStackLayout Spacing="5">
-                                <Image HeightRequest="20" Source="calendar.svg"/>
-                                <Label Text="01-05-25 to 05-01-25" FontSize="14" TextColor="Gray"/>
-                            </HorizontalStackLayout>
-                            
-                        </VerticalStackLayout>
-                    </Grid>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TripsViewModel}}, Path=GoToTripDetailsPageCommand}" CommandParameter="{Binding Id}"/>
-                    </Border.GestureRecognizers>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                                </HorizontalStackLayout>
+
+                                <!-- Datas -->
+                                <HorizontalStackLayout Spacing="5">
+                                    <Image HeightRequest="20" Source="calendar.svg"/>
+                                    <Label Text="{Binding DisplayDateRange}" FontSize="14" TextColor="Gray"/>
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+                        </Grid>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TripsViewModel}}, Path=GoToTripDetailsPageCommand}" CommandParameter="{Binding Id}"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <ActivityIndicator HorizontalOptions="Center" IsRunning="{Binding IsBusy}" VerticalOptions="Center"/>
+    </Grid>
 </ContentPage>

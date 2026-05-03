@@ -6,6 +6,7 @@
              Shell.NavBarIsVisible="False"
              xmlns:vm="clr-namespace:TravelExpenseTracker.ViewModels"
              xmlns:model="clr-namespace:TravelExpenseTracker.Models"
+             xmlns:dto="clr-namespace:TravelExpenseTracker.Shared.Dtos;assembly=TravelExpenseTracker.Shared"
              x:DataType="vm:HomeViewModel"
              >
 
@@ -16,7 +17,7 @@
         <!-- Cabeçalho -->
         <Grid Grid.Row="1" ColumnDefinitions="Auto, *, Auto" Padding="15,0">
             <Label Grid.Column="0" Text="Recent trips" FontSize="20"/>
-            <Button Grid.Column="2" Text="Add a trip" Command="{Binding AddTripTempCommand}"/>
+            <Button Grid.Column="2" Text="Add a trip" Command="{Binding AddTripCommand}"/>
         </Grid>
 
         <!-- Lista rolável -->
@@ -24,7 +25,7 @@
             <CollectionView.EmptyView>
                 <VerticalStackLayout HorizontalOptions="Center" Padding="25" Margin="0, 50, 0, 0">
                     <Label Text="No trips yet" FontSize="30"/>
-                    <Button Text="Add a trip" Margin="0, 15, 0, 0" Command="{Binding AddTripTempCommand}"/>
+                    <Button Text="Add a trip" Margin="0, 15, 0, 0" Command="{Binding AddTripCommand}"/>
                 </VerticalStackLayout>
             </CollectionView.EmptyView>
 
@@ -33,7 +34,7 @@
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:TripModel">
+                <DataTemplate x:DataType="dto:TripListDto">
                     <Border StrokeShape="RoundRectangle 15" BackgroundColor="White" StrokeThickness="0">
                         <VerticalStackLayout>
                             <Image Source="{Binding Image}" HeightRequest="100"/>

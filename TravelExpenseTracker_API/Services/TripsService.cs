@@ -72,26 +72,31 @@ public class TripsService
         .Where(t => t.UserId == userId)
         .OrderBy(t => t.StartDate)
         .Take(count)
-        .Select( t => new TripListDto( t.Id, t.Title, t.Category.Image, t.Status, t.Location, t.StartDate, t.EndDate))
+        .Select( t => new TripListDto( t.Id, t.Title, t.Category.Image, t.Status, t.Location, t.StartDate, t.EndDate, t.CategoryId))
         .ToArrayAsync();
 
-    public async Task<ApiResult<TripDetailsDto>> GetTripDetailsAsync(int tripId, int userId)
+    public async Task<ApiResult<TripDetailsDto>> GetTripDetailsAsync(int tripId, int userId, bool includeExpenses)
     {
         var tripInfo = await _context.Trips
             .AsNoTracking()
             .Where(t => t.Id == tripId && t.UserId == userId)
-            .Select(t => new TripListDto(t.Id, t.Title, t.Category.Image, t.Status, t.Location, t.StartDate, t.EndDate))
+            .Select(t => new TripListDto(t.Id, t.Title, t.Category.Image, t.Status, t.Location, t.StartDate, t.EndDate, t.CategoryId))
             .FirstOrDefaultAsync();
 
         if (tripInfo is null)
             return ApiResult<TripDetailsDto>.Fail("Invalid request");
 
+        if (includeExpenses) { 
         var expenses = await _context.TripExpenses.AsNoTracking()
             .Where(e => e.TripId == tripId)
             .Select(e => new ExpenseListDto(e.Id, e.Title, e.ExpenseCategory.Name, e.Amount, e.SpentOn))
             .ToArrayAsync();
-
         return ApiResult<TripDetailsDto>.Success(new TripDetailsDto(tripInfo, expenses));
+        }
+        else
+        {
+            return ApiResult<TripDetailsDto>.Success(new TripDetailsDto(tripInfo, []));
+        }
     }
 
 }

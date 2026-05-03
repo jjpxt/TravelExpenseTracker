@@ -28,8 +28,8 @@ public class TripsController : AppBaseController
         await _tripsService.GetUserTripsAsync(UserId, count);
 
     [HttpGet("{tripId:int}")]
-    public async Task<ApiResult<TripDetailsDto>> GetTripDetails(int tripId) =>
-        await _tripsService.GetTripDetailsAsync(tripId, UserId);
+    public async Task<ApiResult<TripDetailsDto>> GetTripDetails(int tripId, bool includeExpenses = true) =>
+        await _tripsService.GetTripDetailsAsync(tripId, UserId, includeExpenses);
 }
 
 
